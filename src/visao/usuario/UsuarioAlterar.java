@@ -4,10 +4,7 @@ import controlador.UsuarioDao;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
-/**
- *
- * @author Marcelo Borth
- */
+
 public class UsuarioAlterar extends javax.swing.JFrame {
 
     /**

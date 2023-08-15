@@ -4,14 +4,11 @@ import controlador.UsuarioDao;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
-/**
- *
- * @author Marcelo Borth
- */
+
 public class UsuarioCadastrar extends javax.swing.JFrame {
 
     /**
-     * Creates new form UsuarioCadastrar
+     * 
      */
     public UsuarioCadastrar() {
         initComponents();

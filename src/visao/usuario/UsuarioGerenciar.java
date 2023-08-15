@@ -1,6 +1,5 @@
 package visao.usuario;
 
-import controlador.Conexao;
 import controlador.UsuarioDao;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -202,7 +201,7 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
-        
+
         new UsuarioCadastrar().setVisible(true);
         
     }//GEN-LAST:event_jButtonNovoActionPerformed
@@ -277,7 +276,6 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
        this.alterar();
-
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void carregarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carregarTodosActionPerformed
