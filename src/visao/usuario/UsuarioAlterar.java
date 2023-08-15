@@ -64,6 +64,11 @@ public class UsuarioAlterar extends javax.swing.JFrame {
                 jTextFieldIDFocusLost(evt);
             }
         });
+        jTextFieldID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIDActionPerformed(evt);
+            }
+        });
 
         jButtonSalvarDadosGerais.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/salvar.png"))); // NOI18N
         jButtonSalvarDadosGerais.setText("Salvar");
@@ -281,6 +286,10 @@ public class UsuarioAlterar extends javax.swing.JFrame {
     private void jButtonAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAlterarSenhaActionPerformed
+
+    private void jTextFieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIDActionPerformed
 
     /**
      * @param args the command line arguments

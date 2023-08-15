@@ -18,7 +18,7 @@ public class GrupoDao {
     public int inserir (Grupo g) throws Exception {
         int retorno;
        
-        String sql = "insert into usuario (nome)"
+        String sql = "insert into grupo (nome)"
                 + "values (?)";
 
         Connection conexao = Conexao.getConexao();
@@ -101,7 +101,7 @@ public class GrupoDao {
         Connection conexao = Conexao.getConexao();
         try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setString(1, g.getNome());
-            ps.setInt(3, g.getId());
+            ps.setInt(2, g.getId());
 
             retorno = ps.executeUpdate();
         }
