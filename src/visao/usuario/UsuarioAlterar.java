@@ -8,7 +8,7 @@ import modelo.Usuario;
 public class UsuarioAlterar extends javax.swing.JFrame {
 
     /**
-     * Creates new form UsuarioAlterar
+     * Creates new form ClienteAlterar
      */
     public UsuarioAlterar() {
         initComponents();
@@ -46,7 +46,7 @@ public class UsuarioAlterar extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Alterar Usuário");
+        jLabel1.setText("Alterar Cliente");
 
         jLabel2.setText("ID:");
 
@@ -218,9 +218,38 @@ public class UsuarioAlterar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAlterarSenhaActionPerformed
+
+    private void jButtonSalvarDadosGeraisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarDadosGeraisActionPerformed
+        //Validações
+        // - Campos obrigatórios
+        // - Email correto
+
+        Integer id = Integer.valueOf(jTextFieldID.getText());
+        String nome = jTextFieldNome.getText();
+        String email = jTextFieldEmail.getText();
+
+        Usuario u = new Usuario(id, nome, email, null);
+
+        try {
+            UsuarioDao dao = new UsuarioDao();
+            dao.atualizar(u);
+
+            JOptionPane.showMessageDialog(this, "Registro atualizado com sucesso.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonSalvarDadosGeraisActionPerformed
+
+    private void jTextFieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIDActionPerformed
+
     private void jTextFieldIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldIDFocusLost
         String id = jTextFieldID.getText();
-        
+
         if (!id.trim().equals("")) {
             this.mostrarUsuario(id);
         } else {
@@ -257,36 +286,6 @@ public class UsuarioAlterar extends javax.swing.JFrame {
             jTextFieldID.requestFocus();
         }
     }
-
-    private void jButtonSalvarDadosGeraisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarDadosGeraisActionPerformed
-        //Validações
-        // - Campos obrigatórios
-        // - Email correto
-
-        Integer id = Integer.valueOf(jTextFieldID.getText());
-        String nome = jTextFieldNome.getText();
-        String email = jTextFieldEmail.getText();
-
-        Usuario u = new Usuario(id, nome, email, null);
-
-        try {
-            UsuarioDao dao = new UsuarioDao();
-            dao.atualizar(u);
-
-            JOptionPane.showMessageDialog(this, "Registro atualizado com sucesso.");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
-        }
-
-    }//GEN-LAST:event_jButtonSalvarDadosGeraisActionPerformed
-
-    private void jButtonAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAlterarSenhaActionPerformed
-
-    private void jTextFieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldIDActionPerformed
 
     /**
      * @param args the command line arguments

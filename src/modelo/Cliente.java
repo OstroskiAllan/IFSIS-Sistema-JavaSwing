@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.util.Date;
+
 /**
 Entidade: cliente
 id int PK AI
@@ -19,16 +21,17 @@ datacadastro datetime default current_timestamp
 public class Cliente {
     private Integer id;
     private String nome;
-    private char tipoCliente;
+    private Integer tipoCliente;
     private String cpfCnpj;
     private String telefone;
     private String email;
     private String observacao;
+    private Date dataCadastro;
 
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nome, char tipoCliente, String cpfCnpj, String telefone, String email, String observacao) {
+    public Cliente(Integer id, String nome, Integer tipoCliente, String cpfCnpj, String telefone, String email, String observacao, Date dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.tipoCliente = tipoCliente;
@@ -36,6 +39,7 @@ public class Cliente {
         this.telefone = telefone;
         this.email = email;
         this.observacao = observacao;
+        this.dataCadastro = dataCadastro;
     }
 
     public Integer getId() {
@@ -54,11 +58,11 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public char getTipoCliente() {
+    public Integer getTipoCliente() {
         return tipoCliente;
     }
 
-    public void setTipoCliente(char tipoCliente) {
+    public void setTipoCliente(Integer tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
 
@@ -92,6 +96,14 @@ public class Cliente {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
     
     
