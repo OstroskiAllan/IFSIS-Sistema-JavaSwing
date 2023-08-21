@@ -14,14 +14,15 @@ public class UsuarioDao {
     public int inserir(Usuario u) throws Exception {
         int retorno;
 
-        String sql = "insert into usuario (nome, email, senha)"
-                + "values (?, ?, ?)";
+        String sql = "insert into usuario (nome, email, senha, status)"
+                + "values (?, ?, ?, ?)";
 
         Connection conexao = Conexao.getConexao();
         try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setString(1, u.getNome());
             ps.setString(2, u.getEmail());
             ps.setString(3, u.getSenha());
+            ps.setString(4, u.getStatus().toString());
 
             retorno = ps.executeUpdate();
         }
@@ -54,6 +55,7 @@ public class UsuarioDao {
                     u.setId(rs.getInt("id"));
                     u.setNome(rs.getString("nome"));
                     u.setEmail(rs.getString("email"));
+                    u.setStatus(rs.getInt("status"));
                     
                     
                     lista.add(u);
@@ -82,6 +84,7 @@ public class UsuarioDao {
                     obj.setId(rs.getInt("id"));
                     obj.setNome(rs.getString("nome"));
                     obj.setEmail(rs.getString("email"));
+                    obj.setStatus(rs.getInt("status"));
                 }
             }
         } catch (Exception e) {
@@ -97,13 +100,15 @@ public class UsuarioDao {
         String sql = "update usuario"
                 + "      set nome  = ?,"
                 + "          email = ?"
+                + "          status = ?"
                 + "    where id    = ?";
 
         Connection conexao = Conexao.getConexao();
         try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setString(1, u.getNome());
             ps.setString(2, u.getEmail());
-            ps.setInt(3, u.getId());
+            ps.setString(3, u.getStatus().toString());
+            ps.setInt(4, u.getId());
 
             retorno = ps.executeUpdate();
         }

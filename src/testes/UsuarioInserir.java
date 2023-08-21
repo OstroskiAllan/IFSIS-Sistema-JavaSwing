@@ -13,12 +13,12 @@ public class UsuarioInserir {
     public static void main(String[] args) {
 
         try {
-            Usuario u = new Usuario(
-                    null, "Marcelo Borth",
-                    "marcelo.borth@ifpr.edu.br", "1234");
+            //Usuario u = new Usuario(
+                //    null, "Marcelo Borth",
+                  //  "marcelo.borth@ifpr.edu.br", "1234");
             
-            UsuarioDao dao = new UsuarioDao();
-            dao.inserir(u);
+            //UsuarioDao dao = new UsuarioDao();
+            //dao.inserir(u);
             
             System.out.println("Usuário inserido com sucesso.");
         } catch (Exception ex) {
