@@ -2,7 +2,7 @@ package modelo;
 
 /**
  *
- * @author Marcelo Rafael Borth
+ *
  */
 public class Usuario {
     
@@ -20,7 +20,7 @@ public class Usuario {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.status = status;
+        this.status = Status;
     }
     
     public Integer getId() {

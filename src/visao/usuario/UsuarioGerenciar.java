@@ -38,8 +38,8 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
         jTableDados = new javax.swing.JTable();
         jButtonExcluir = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         carregarTodos = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerenciar Usuário");
@@ -136,14 +136,14 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("* Dois cliques para alterar o registro.");
-
         carregarTodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/download-pequeno.jpg"))); // NOI18N
         carregarTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 carregarTodosActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("* Dois cliques para alterar o registro.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,7 +154,7 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -192,7 +192,9 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonExcluir)
                         .addComponent(jButtonAlterar))
-                    .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -228,11 +230,18 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
             List<Usuario> lista = dao.buscar(campoPesquisa);
             
             for(Usuario obj : lista){
+                
+            String tipoStatus = ""; // Inicializa a string do status de usuario
+            if (obj.getStatus() == 0) {
+                tipoStatus = "Inativo";
+            } else if (obj.getStatus() == 1) {
+                tipoStatus = "Ativo";
+            } 
                 String[] linha = {
                     obj.getId().toString(),
                     obj.getNome(),
                     obj.getEmail(),
-                    obj.getStatus().toString(),
+                    tipoStatus,
                     ""
                 };
                 modelo.addRow(linha);
@@ -353,7 +362,7 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableDados;

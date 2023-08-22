@@ -22,7 +22,7 @@ public class ClienteDao {
         Connection conexao = Conexao.getConexao();
         try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
              ps.setString(1, c.getNome());
-            ps.setInt(2, c.getTipoCliente());
+            ps.setString(2, c.getTipoCliente().toString());
             ps.setString(3, c.getCpfCnpj());
             ps.setString(4, c.getTelefone());
             ps.setString(5, c.getEmail());
@@ -121,7 +121,7 @@ public class ClienteDao {
         Connection conexao = Conexao.getConexao();
         try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setString(1, c.getNome());
-            ps.setInt(2, c.getTipoCliente());
+            ps.setString(2, c.getTipoCliente().toString());
             ps.setString(3, c.getCpfCnpj());
             ps.setString(4, c.getTelefone());
             ps.setString(5, c.getEmail());

@@ -31,10 +31,10 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nome, Integer tipoCliente, String cpfCnpj, String telefone, String email, String observacao, Date dataCadastro) {
+    public Cliente(Integer id, String nome, Integer TipoCliente, String cpfCnpj, String telefone, String email, String observacao, Date dataCadastro) {
         this.id = id;
         this.nome = nome;
-        this.tipoCliente = tipoCliente;
+        this.tipoCliente = TipoCliente;
         this.cpfCnpj = cpfCnpj;
         this.telefone = telefone;
         this.email = email;

@@ -58,10 +58,10 @@ public class ClienteGerenciar extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, true, true, true, true
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -265,7 +265,7 @@ public class ClienteGerenciar extends javax.swing.JFrame {
                 tipoClienteStr = "Fisica";
             } else if (obj.getTipoCliente() == 1) {
                 tipoClienteStr = "Jurídica";
-            } // Adicione mais condições conforme necessário para outros tipos de cliente
+            } 
             
             String[] linha = {
                 obj.getId().toString(),

@@ -99,7 +99,7 @@ public class UsuarioDao {
 
         String sql = "update usuario"
                 + "      set nome  = ?,"
-                + "          email = ?"
+                + "          email = ?,"
                 + "          status = ?"
                 + "    where id    = ?";
 

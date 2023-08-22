@@ -77,7 +77,7 @@ public class UsuarioAlterar extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inativo", "Ativo", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -230,7 +230,7 @@ public class UsuarioAlterar extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -250,8 +250,14 @@ public class UsuarioAlterar extends javax.swing.JFrame {
         Integer id = Integer.valueOf(jTextFieldID.getText());
         String nome = jTextFieldNome.getText();
         String email = jTextFieldEmail.getText();
-        Integer status = jComboBox1.getSelectedIndex();
-
+        Integer selectedIndex = jComboBox1.getSelectedIndex();
+       
+        Integer status = null; // Inicialize como nulo
+        
+        if (selectedIndex != -1) { // Se alguma opção do combobox estiver selecionada
+            status = selectedIndex; // Os índices do combobox começam em 0
+        }
+          
         Usuario u = new Usuario(id, nome, email, null, status);
 
         try {
@@ -290,7 +296,13 @@ public class UsuarioAlterar extends javax.swing.JFrame {
 
             UsuarioDao dao = new UsuarioDao();
             Usuario obj = dao.getUsuario(id);
-
+            // Verifique se o status não é nulo antes de selecionar o valor no combobox
+            if (obj.getStatus() != null) {
+                jComboBox1.setSelectedIndex(obj.getStatus()); // Ajuste para a indexação do combobox
+            } else {
+                jComboBox1.setSelectedIndex(-1); // Caso o status seja nulo, deixe o combobox sem seleção
+            }
+            
             if (obj != null) {
                 //Preenche os dados do formulário
                 jTextFieldID.setText(obj.getId().toString());
