@@ -1,16 +1,13 @@
 package visao.cliente;
 
-
-
-
 import controlador.ClienteDao;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
-
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
-
+ *
  */
 public class ClienteCadastrar extends javax.swing.JFrame {
 
@@ -28,16 +25,16 @@ public class ClienteCadastrar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
-        jTextFieldTelefone = new javax.swing.JTextField();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextObservacao = new javax.swing.JTextArea();
-        jTextFieldCpfCnpj = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jTextFieldCpfCnpj = new javax.swing.JFormattedTextField();
+        jTextFieldTelefone = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Usuário");
@@ -66,19 +63,6 @@ public class ClienteCadastrar extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldTelefone.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                jTextFieldTelefoneCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            }
-        });
-        jTextFieldTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTelefoneActionPerformed(evt);
-            }
-        });
-
         jTextFieldEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldEmailActionPerformed(evt);
@@ -95,12 +79,6 @@ public class ClienteCadastrar extends javax.swing.JFrame {
         jTextObservacao.setRows(5);
         jScrollPane1.setViewportView(jTextObservacao);
 
-        jTextFieldCpfCnpj.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCpfCnpjActionPerformed(evt);
-            }
-        });
-
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("CPF/CNPJ:");
 
@@ -114,6 +92,23 @@ public class ClienteCadastrar extends javax.swing.JFrame {
             }
         });
 
+        try {
+            jTextFieldCpfCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-###-###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jTextFieldCpfCnpj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCpfCnpjActionPerformed(evt);
+            }
+        });
+
+        try {
+            jTextFieldTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,35 +118,38 @@ public class ClienteCadastrar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonCadastrar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextFieldNome))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextFieldEmail))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextFieldTelefone))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextFieldNome))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(227, 227, 227)
+                                        .addComponent(jButtonCadastrar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane1)))))
                         .addContainerGap(33, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -166,13 +164,13 @@ public class ClienteCadastrar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,63 +189,147 @@ public class ClienteCadastrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        
+
         String nome = jTextFieldNome.getText();
-       
-        
         String cpfCnpj = jTextFieldCpfCnpj.getText();
         String telefone = jTextFieldTelefone.getText();
         String email = jTextFieldEmail.getText();
         String observacao = jTextObservacao.getText();
-        
+
         int selectedIndex = jComboBox1.getSelectedIndex();
-        
+
         int tipoCliente = selectedIndex;
-        
+
         //Validações
         if (nome.equals("")) {
             JOptionPane.showMessageDialog(this, "Informe o nome.");
             jTextFieldNome.requestFocus();
             return;
         }
-      
-        
+
+        if (!validaEmail(email)) {
+            JOptionPane.showMessageDialog(this, "Email inválido.");
+            jTextFieldEmail.requestFocus();
+            return;
+        }
+
+        if (!validaCPF(cpfCnpj) && !validaCNPJ(cpfCnpj)) {
+            JOptionPane.showMessageDialog(this, "CPF/CNPJ inválido.");
+            jTextFieldCpfCnpj.requestFocus();
+            return;
+        }
+
         Cliente c = new Cliente(null, nome, tipoCliente, cpfCnpj, telefone, email, observacao, null);
-        
+
         try {
             ClienteDao dao = new ClienteDao();
             dao.inserir(c);
-            
+
             JOptionPane.showMessageDialog(this, "Registro inserido com sucesso.");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
         }
-        
+
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
+    private boolean validaEmail(String email) {
+        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    private boolean validaCPF(String cpf) {
+        // Remove caracteres não numéricos do CPF
+        cpf = cpf.replaceAll("[^0-9]", "");
+
+        // Verifica se o CPF possui 11 dígitos
+        if (cpf.length() != 11) {
+            return false;
+        }
+
+        // Calcula o primeiro dígito verificador
+        int soma = 0;
+        for (int i = 0; i < 9; i++) {
+            soma += (cpf.charAt(i) - '0') * (10 - i);
+        }
+        int primeiroDigito = 11 - (soma % 11);
+        if (primeiroDigito >= 10) {
+            primeiroDigito = 0;
+        }
+
+        // Calcula o segundo dígito verificador
+        soma = 0;
+        for (int i = 0; i < 10; i++) {
+            soma += (cpf.charAt(i) - '0') * (11 - i);
+        }
+        int segundoDigito = 11 - (soma % 11);
+        if (segundoDigito >= 10) {
+            segundoDigito = 0;
+        }
+
+        // Verifica se os dígitos calculados coincidem com os dígitos do CPF
+        return (cpf.charAt(9) - '0' == primeiroDigito) && (cpf.charAt(10) - '0' == segundoDigito);
+    }
+
+    private boolean validaCNPJ(String cnpj) {
+        // Remove caracteres não numéricos do CNPJ
+        cnpj = cnpj.replaceAll("[^0-9]", "");
+
+        // Verifica se o CNPJ possui 14 dígitos
+        if (cnpj.length() != 14) {
+            return false;
+        }
+
+        // Calcula o primeiro dígito verificador
+        int soma = 0;
+        int peso = 2;
+        for (int i = 11; i >= 0; i--) {
+            soma += (cnpj.charAt(i) - '0') * peso;
+            peso++;
+            if (peso == 10) {
+                peso = 2;
+            }
+        }
+        int primeiroDigito = 11 - (soma % 11);
+        if (primeiroDigito >= 10) {
+            primeiroDigito = 0;
+        }
+
+        // Calcula o segundo dígito verificador
+        soma = 0;
+        peso = 2;
+        for (int i = 12; i >= 0; i--) {
+            soma += (cnpj.charAt(i) - '0') * peso;
+            peso++;
+            if (peso == 10) {
+                peso = 2;
+            }
+        }
+        int segundoDigito = 11 - (soma % 11);
+        if (segundoDigito >= 10) {
+            segundoDigito = 0;
+        }
+
+        // Verifica se os dígitos calculados coincidem com os dígitos do CNPJ
+        return (cnpj.charAt(12) - '0' == primeiroDigito) && (cnpj.charAt(13) - '0' == segundoDigito);
+    }
+
 
     private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
-    private void jTextFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTelefoneActionPerformed
-
     private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEmailActionPerformed
 
-    private void jTextFieldCpfCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCpfCnpjActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCpfCnpjActionPerformed
-
-    private void jTextFieldTelefoneCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneCaretPositionChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTelefoneCaretPositionChanged
-
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextFieldCpfCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCpfCnpjActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCpfCnpjActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,12 +380,13 @@ public class ClienteCadastrar extends javax.swing.JFrame {
             }
         });
     }
+
     private void limparCampos() {
-    jTextFieldNome.setText("");
-    jTextFieldCpfCnpj.setText("");
-    jTextFieldTelefone.setText("");
-    jTextFieldEmail.setText("");
-    jTextObservacao.setText("");
+        jTextFieldNome.setText("");
+        jTextFieldCpfCnpj.setText("");
+        jTextFieldTelefone.setText("");
+        jTextFieldEmail.setText("");
+        jTextObservacao.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -318,10 +401,10 @@ public class ClienteCadastrar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextFieldCpfCnpj;
+    private javax.swing.JFormattedTextField jTextFieldCpfCnpj;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldTelefone;
+    private javax.swing.JFormattedTextField jTextFieldTelefone;
     private javax.swing.JTextArea jTextObservacao;
     // End of variables declaration//GEN-END:variables
 }

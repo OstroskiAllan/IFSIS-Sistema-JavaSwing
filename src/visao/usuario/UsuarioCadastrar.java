@@ -1,6 +1,8 @@
 package visao.usuario;
 
 import controlador.UsuarioDao;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
@@ -139,7 +141,13 @@ public class UsuarioCadastrar extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+     private boolean validaEmail(String email) {
+    String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(email);
+    return matcher.matches();
+    }
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         
         String nome = jTextFieldNome.getText();
@@ -179,7 +187,11 @@ public class UsuarioCadastrar extends javax.swing.JFrame {
             return;
         }
         //Verificar se email é válido
-        
+        if (!validaEmail(email)) {
+        JOptionPane.showMessageDialog(this, "Email inválido.");
+        jTextFieldEmail.requestFocus();
+        return;
+        }
         Usuario u = new Usuario(null, nome, email, senha, status);
         
         try {

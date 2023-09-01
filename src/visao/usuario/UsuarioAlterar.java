@@ -3,7 +3,8 @@ package visao.usuario;
 import controlador.UsuarioDao;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UsuarioAlterar extends javax.swing.JFrame {
 
@@ -241,7 +242,14 @@ public class UsuarioAlterar extends javax.swing.JFrame {
     private void jButtonAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAlterarSenhaActionPerformed
-
+    
+     private boolean validaEmail(String email) {
+    String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(email);
+    return matcher.matches();
+    }
+     
     private void jButtonSalvarDadosGeraisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarDadosGeraisActionPerformed
         //Validações
         // - Campos obrigatórios
@@ -257,7 +265,13 @@ public class UsuarioAlterar extends javax.swing.JFrame {
         if (selectedIndex != -1) { // Se alguma opção do combobox estiver selecionada
             status = selectedIndex; // Os índices do combobox começam em 0
         }
-          
+         
+        if (!validaEmail(email)) {
+        JOptionPane.showMessageDialog(this, "Email inválido.");
+        jTextFieldEmail.requestFocus();
+        return;
+        }
+        
         Usuario u = new Usuario(id, nome, email, null, status);
 
         try {
